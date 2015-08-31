@@ -2,11 +2,18 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>br.com.compras.online</groupId>
-    <artifactId>compras-online-backend</artifactId>
+    <artifactId>compras-backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>compras-service-ws</artifactId>
   <packaging>war</packaging>
   <name>compras-service-ws</name>
   <description>Compras Service WS</description>
+  	<dependencies>
+		<dependency>
+			<groupId>br.com.compras.online</groupId>
+			<artifactId>compras-persistence</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
 </project>
