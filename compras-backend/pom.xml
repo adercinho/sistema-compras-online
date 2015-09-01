@@ -1,17 +1,24 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>br.com.compras.online</groupId>
-  <artifactId>compras-backend</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>pom</packaging>
-  <name>compras-backend</name>
-  <description>Compras - Backend</description>
-  <modules>
-  	<module>compras-persistence</module>
-  	<module>compras-service-ws</module>
-  	<module>compras-service-rs</module>
-  </modules>
-  <build>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>br.com.compras.online</groupId>
+	<artifactId>compras-backend</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>compras-backend</name>
+	<description>Compras - Backend</description>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.1.1.RELEASE</version>
+	</parent>
+
+	<modules>
+		<module>compras-persistence</module>
+		<module>compras-service-ws</module>
+		<module>compras-service-rs</module>
+	</modules>
+	<build>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
