@@ -1,0 +1,7 @@
+@import "../valo/valo.scss";
+
+$v-app-loading-text: "Carregando...";
+
+@mixin compras {
+  @include valo;
+}
