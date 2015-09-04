@@ -1,0 +1,2 @@
+insert into Cliente (codigo, nome, endereco, telefone, situacao) values (1, 'Adercio Reinan', 'Rua gonçalves', '11985022548', null)
+insert into Cliente (codigo, nome, endereco, telefone, situacao) values (2, 'Fernando Santana', 'Avenida Gomes', '11856325545', null)
