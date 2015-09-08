@@ -1,19 +1,3 @@
-/*
- * Copyright 2012-2014 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package br.com.compras.backend.service.ws.endpoint;
 
 import java.text.SimpleDateFormat;
@@ -33,10 +17,10 @@ import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 
-import br.com.compras.backend.service.ws.HumanResourceService;
+import br.com.compras.backend.service.ws.ClienteService;
 
 @Endpoint
-public class HolidayEndpoint {
+public class ClienteEndpoint {
 
 	private static final String NAMESPACE_URI = "http://mycompany.com/hr/schemas";
 
@@ -44,13 +28,13 @@ public class HolidayEndpoint {
 	private XPathExpression<Element> endDateExpression;
 	private XPathExpression<String> nameExpression;
 
-	private HumanResourceService humanResourceService;
+	private ClienteService clienteService;
 
 	@Autowired
-	public HolidayEndpoint(HumanResourceService humanResourceService)
+	public ClienteEndpoint(ClienteService humanResourceService)
 			throws JDOMException, XPathFactoryConfigurationException,
 			XPathExpressionException {
-		this.humanResourceService = humanResourceService;
+		this.clienteService = humanResourceService;
 
 		Namespace namespace = Namespace.getNamespace("hr", NAMESPACE_URI);
 
@@ -65,17 +49,15 @@ public class HolidayEndpoint {
 				namespace);
 	}
 
-	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "HolidayRequest")
-	public void handleHolidayRequest(@RequestPayload Element holidayRequest)
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "clienteRequest")
+	public void handleClienteRequest(@RequestPayload Element clienteRequest)
 			throws Exception {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		Date startDate = dateFormat.parse(this.startDateExpression.evaluateFirst(
-				holidayRequest).getText());
-		Date endDate = dateFormat.parse(this.endDateExpression.evaluateFirst(
-				holidayRequest).getText());
-		String name = this.nameExpression.evaluateFirst(holidayRequest);
+		Date startDate = dateFormat.parse(this.startDateExpression.evaluateFirst(clienteRequest).getText());
+		Date endDate = dateFormat.parse(this.endDateExpression.evaluateFirst(clienteRequest).getText());
+		String name = this.nameExpression.evaluateFirst(clienteRequest);
 
-		this.humanResourceService.bookHoliday(startDate, endDate, name);
+		this.clienteService.save(null);
 	}
 
 }

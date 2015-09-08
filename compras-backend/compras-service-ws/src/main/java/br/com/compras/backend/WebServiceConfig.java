@@ -36,7 +36,7 @@ public class WebServiceConfig extends WsConfigurerAdapter {
 	public ServletRegistrationBean dispatcherServlet(ApplicationContext applicationContext) {
 		MessageDispatcherServlet servlet = new MessageDispatcherServlet();
 		servlet.setApplicationContext(applicationContext);
-		return new ServletRegistrationBean(servlet, "/ws/*");
+		return new ServletRegistrationBean(servlet, "/*");
 	}
 
 	@Bean(name = "holiday")
