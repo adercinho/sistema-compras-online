@@ -10,7 +10,9 @@
     
 	<modules>
 		<module>compras-domain</module>
-		<module>compras-infrastructure</module>
+		<module>compras-repository</module>
+		<module>compras-service-rs</module>
+		<module>compras-service-ws</module>
 	</modules>
 	<properties>
 		<main.basedir>${basedir}/../..</main.basedir>
