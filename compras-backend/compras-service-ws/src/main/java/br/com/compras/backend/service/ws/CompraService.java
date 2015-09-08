@@ -9,6 +9,7 @@ public interface CompraService {
 
 	Compra findById(Long id);
 	List<Compra> findAll();
+	List<Compra> findComprasMaiorQueQuinhentosReais();
 	Compra save(Compra compra) throws BusinessException;
 	void delete(Long id);
 		

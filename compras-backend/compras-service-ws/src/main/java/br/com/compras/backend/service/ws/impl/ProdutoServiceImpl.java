@@ -32,4 +32,9 @@ public class ProdutoServiceImpl implements ProdutoService{
 	public void delete(Long id) {
 		repository.delete(repository.findOne(id));
 	}
+
+	@Override
+	public List<Produto> findProdutosMenorQueMilReais() {
+		return repository.findProdutosMenorQueMilReais();
+	}
 }

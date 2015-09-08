@@ -8,6 +8,7 @@ public interface ProdutoService {
 
 	Produto findById(Long id);
 	List<Produto> findAll();
+	List<Produto> findProdutosMenorQueMilReais();
 	Produto save(Produto produto);
 	void delete(Long id);
 		

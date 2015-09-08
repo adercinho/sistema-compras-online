@@ -35,6 +35,12 @@ public class ProdutoService{
 	}
 	
 	@ResponseBody
+	@RequestMapping("/findProdutosMenorQueMilReais")
+	public List<Produto> findProdutosMenorQueMilReais() {
+		return repository.findProdutosMenorQueMilReais();
+	}
+	
+	@ResponseBody
 	@RequestMapping(method = {RequestMethod.PUT, RequestMethod.POST})
 	public Produto save(@RequestBody Produto produto) {
 		return repository.save(produto);

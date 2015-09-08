@@ -38,6 +38,12 @@ public class CompraService{
 	}
 	
 	@ResponseBody
+	@RequestMapping("/findComprasMaiorQueQuinhentosReais")
+	public List<Compra> findComprasMaiorQueQuinhentosReais() {
+		return repository.findComprasMaiorQueQuinhentosReais();
+	}
+	
+	@ResponseBody
 	@RequestMapping(method = {RequestMethod.PUT, RequestMethod.POST})
 	public Compra save(@RequestBody Compra compra) throws BusinessException {
 		Reserva reserva = reservaRepository.findOne(compra.getReserva().getId());

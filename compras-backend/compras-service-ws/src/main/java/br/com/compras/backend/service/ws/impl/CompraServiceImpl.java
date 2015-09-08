@@ -42,4 +42,9 @@ public class CompraServiceImpl implements CompraService{
 	public void delete(Long id) {
 		repository.delete(repository.findOne(id));
 	}
+
+	@Override
+	public List<Compra> findComprasMaiorQueQuinhentosReais() {
+		return repository.findComprasMaiorQueQuinhentosReais();
+	}
 }

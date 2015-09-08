@@ -34,4 +34,9 @@ public class ClienteServiceImpl implements ClienteService {
 	public void delete(Long id) {
 		repository.delete(repository.findOne(id));
 	}
+
+	@Override
+	public List<Cliente> findClientesQueRealizamReservaProdutos() {
+		return repository.findClientesQueRealizamReservaProdutos();
+	}
 }

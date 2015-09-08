@@ -33,6 +33,12 @@ public class ClienteService{
 	}
 	
 	@ResponseBody
+	@RequestMapping("/findClientesQueRealizamReservaProdutos")
+	public List<Cliente> findClientesQueRealizamReservaProdutos() {
+		return repository.findClientesQueRealizamReservaProdutos();
+	}
+	
+	@ResponseBody
 	@RequestMapping(method = {RequestMethod.PUT, RequestMethod.POST})
 	public Cliente save(@RequestBody Cliente cliente) {
 		return repository.save(cliente);

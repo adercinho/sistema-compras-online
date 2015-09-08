@@ -8,6 +8,7 @@ public interface ClienteService {
 
 	Cliente findById(Long id);
 	List<Cliente> findAll();
+	List<Cliente> findClientesQueRealizamReservaProdutos();
 	Cliente save(Cliente cliente);
 	void delete(Long id);
 		
