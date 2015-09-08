@@ -2,6 +2,7 @@ package br.com.compras.backend.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,7 +18,9 @@ public class Cliente implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="ID_CLIENTE")
 	private Long id;
+	
 	private String nome;
 	private String endereco;
 	private String telefone;

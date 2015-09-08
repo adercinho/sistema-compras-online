@@ -4,10 +4,16 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Calendar;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Reserva implements Serializable {
@@ -19,15 +25,20 @@ public class Reserva implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long codigo;
+	@Column(name="ID_RESERVA")
+	private Long id;
+	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar data;
 	private String atendente;
+	@Enumerated
 	private Situacao situacao;
 	private BigDecimal valor;
+	@ManyToOne
+	@JoinColumn(name="ID_CLIENTE")
 	private Cliente cliente;
 
-	public Long getCodigo() {
-		return codigo;
+	public Long getId() {
+		return id;
 	}
 
 	public Calendar getData() {
@@ -50,8 +61,8 @@ public class Reserva implements Serializable {
 		return cliente;
 	}
 
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public void setData(Calendar data) {
@@ -73,4 +84,13 @@ public class Reserva implements Serializable {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+
+	@Override
+	public String toString() {
+		return "Reserva [id=" + id + ", data=" + data + ", atendente="
+				+ atendente + ", situacao=" + situacao + ", valor=" + valor
+				+ ", cliente=" + cliente + "]";
+	}
+	
+	
 }

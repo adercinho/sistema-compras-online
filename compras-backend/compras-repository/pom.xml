@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com.compras.backend</groupId>
 	<artifactId>compras-repository</artifactId>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>compras-repository</name>
 	<version>0.0.1-SNAPSHOT</version>
 	<description>Compras Repository</description>

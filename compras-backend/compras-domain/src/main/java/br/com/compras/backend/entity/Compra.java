@@ -8,6 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Compra implements Serializable {
@@ -20,12 +24,14 @@ public class Compra implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long numero;
+	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar data;
 	private String responsavel;
 	private Situacao situacao;
 	private BigDecimal valor;
+	@ManyToOne
+	@JoinColumn(name="ID_RESERVA")
 	private Reserva reserva;
-	private Cliente cliente;
 	
 	public Long getNumero() {
 		return numero;
@@ -51,10 +57,6 @@ public class Compra implements Serializable {
 		return reserva;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
-	}
-
 	public void setNumero(Long numero) {
 		this.numero = numero;
 	}
@@ -77,10 +79,6 @@ public class Compra implements Serializable {
 
 	public void setReserva(Reserva reserva) {
 		this.reserva = reserva;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
 	}
 
 }

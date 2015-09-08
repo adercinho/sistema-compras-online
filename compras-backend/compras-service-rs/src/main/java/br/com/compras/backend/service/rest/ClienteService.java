@@ -3,43 +3,44 @@ package br.com.compras.backend.service.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.compras.backend.entity.Cliente;
 import br.com.compras.backend.repository.ClienteRepository;
 
-@RestController("/cliente")
+@RestController
+@RequestMapping("/cliente")
 public class ClienteService{
 
 	@Autowired
-	protected ClienteRepository clienteRepository;
+	protected ClienteRepository repository;
 	
 	@ResponseBody
-	@RequestMapping(value = "/findById", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Cliente findById(@RequestParam Long id) {
-		return clienteRepository.findOne(id);
+	@RequestMapping("/{id}")
+	public Cliente findById(@PathVariable Long id) {
+		return repository.findOne(id);
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/findAll", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(method = RequestMethod.GET)
 	public List<Cliente> findAll() {
-		return (List<Cliente>) clienteRepository.findAll();
+		return (List<Cliente>) repository.findAll();
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Cliente save(Cliente cliente) {
-		return clienteRepository.save(cliente);
+	@RequestMapping(method = {RequestMethod.PUT, RequestMethod.POST})
+	public Cliente save(@RequestBody Cliente cliente) {
+		return repository.save(cliente);
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/delete", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public void delete(@RequestParam Long id) {
-		clienteRepository.delete(clienteRepository.findOne(id));
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public void delete(@PathVariable Long id) {
+		repository.delete(repository.findOne(id));
 	}
 }
