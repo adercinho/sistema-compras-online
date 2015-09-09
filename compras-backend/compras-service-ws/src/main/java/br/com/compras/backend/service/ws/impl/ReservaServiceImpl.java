@@ -2,6 +2,8 @@ package br.com.compras.backend.service.ws.impl;
 
 import java.util.List;
 
+import javax.jws.WebService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.com.compras.backend.entity.Cliente;
@@ -11,6 +13,7 @@ import br.com.compras.backend.repository.ClienteRepository;
 import br.com.compras.backend.repository.ReservaRepository;
 import br.com.compras.backend.service.ws.ReservaService;
 
+@WebService(endpointInterface = "br.com.compras.backend.service.ws.ReservaService")
 public class ReservaServiceImpl implements ReservaService{
 
 	@Autowired
@@ -19,17 +22,15 @@ public class ReservaServiceImpl implements ReservaService{
 	@Autowired
 	private ClienteRepository clienteRepository;
 	
-	@Override
 	public Reserva findById(Long id) {
 		return repository.findOne(id);
 	}
 	
-	@Override
-	public List<Reserva> findAll() {
-		return (List<Reserva>) repository.findAll();
+	public Reserva[] findAll() {
+		List<Reserva> lista = (List<Reserva>) repository.findAll();
+		return lista.toArray(new Reserva[lista.size()]);
 	}
 	
-	@Override
 	public Reserva save(Reserva reserva) throws BusinessException {
 		Cliente cliente = clienteRepository.findOne(reserva.getCliente().getId());
 		if(cliente == null){
@@ -39,7 +40,6 @@ public class ReservaServiceImpl implements ReservaService{
 		return repository.save(reserva);
 	}
 	
-	@Override
 	public void delete(Long id) {
 		repository.delete(repository.findOne(id));
 	}

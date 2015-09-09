@@ -2,6 +2,8 @@ package br.com.compras.backend.service.ws.impl;
 
 import java.util.List;
 
+import javax.jws.WebService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.com.compras.backend.entity.Compra;
@@ -11,6 +13,7 @@ import br.com.compras.backend.repository.CompraRepository;
 import br.com.compras.backend.repository.ReservaRepository;
 import br.com.compras.backend.service.ws.CompraService;
 
+@WebService(endpointInterface = "br.com.compras.backend.service.ws.CompraService")
 public class CompraServiceImpl implements CompraService{
 
 	@Autowired
@@ -18,17 +21,15 @@ public class CompraServiceImpl implements CompraService{
 	@Autowired
 	private ReservaRepository reservaRepository;
 	
-	@Override
 	public Compra findById( Long id) {
 		return repository.findOne(id);
 	}
 	
-	@Override
-	public List<Compra> findAll() {
-		return (List<Compra>) repository.findAll();
+	public Compra[] findAll() {
+		List<Compra> lista = (List<Compra>) repository.findAll();
+		return lista.toArray(new Compra[lista.size()]);
 	}
 	
-	@Override
 	public Compra save(Compra compra) throws BusinessException {
 		Reserva reserva = reservaRepository.findOne(compra.getReserva().getId());
 		if(reserva == null){
@@ -38,13 +39,12 @@ public class CompraServiceImpl implements CompraService{
 		return repository.save(compra);
 	}
 	
-	@Override
 	public void delete(Long id) {
 		repository.delete(repository.findOne(id));
 	}
 
-	@Override
-	public List<Compra> findComprasMaiorQueQuinhentosReais() {
-		return repository.findComprasMaiorQueQuinhentosReais();
+	public Compra[] findComprasMaiorQueQuinhentosReais() {
+		List<Compra> lista = repository.findComprasMaiorQueQuinhentosReais();
+		return lista.toArray(new Compra[lista.size()]);
 	}
 }

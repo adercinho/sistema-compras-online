@@ -1,14 +1,15 @@
 package br.com.compras.backend.service.ws;
 
-import java.util.List;
+import javax.jws.WebService;
 
 import br.com.compras.backend.entity.Produto;
 
+@WebService
 public interface ProdutoService {
 
 	Produto findById(Long id);
-	List<Produto> findAll();
-	List<Produto> findProdutosMenorQueMilReais();
+	Produto[] findAll();
+	Produto[] findProdutosMenorQueMilReais();
 	Produto save(Produto produto);
 	void delete(Long id);
 		
