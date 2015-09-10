@@ -1,5 +1,6 @@
 package br.com.compras.online.main.menu;
 
+import br.com.compras.online.view.ClienteView;
 import br.com.compras.online.view.TestView;
 
 import com.vaadin.navigator.View;
@@ -7,7 +8,8 @@ import com.vaadin.server.FontAwesome;
 import com.vaadin.server.Resource;
 
 public enum ViewType implements Comparable<ViewType> {	
-    TESTE(TestView.class, "Test", FontAwesome.ANDROID, false);
+    TESTE(TestView.class, "Test", FontAwesome.ANDROID, false),
+    CLIENTE(ClienteView.class, "Cliente", FontAwesome.USER, false);
 
     private final String viewName;
     private final Class<? extends View> viewClass;

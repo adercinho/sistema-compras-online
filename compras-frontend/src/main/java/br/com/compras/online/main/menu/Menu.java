@@ -2,6 +2,11 @@ package br.com.compras.online.main.menu;
 
 import java.util.Iterator;
 
+import br.com.compras.online.client.ClientType;
+import br.com.compras.online.main.ComprasUI;
+
+import com.vaadin.data.Property;
+import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Button;
@@ -13,6 +18,7 @@ import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.OptionGroup;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.themes.ValoTheme;
 
@@ -38,6 +44,7 @@ public final class Menu extends CustomComponent {
 		menuContent.setWidth(null);
 		menuContent.setHeight("100%");
 		menuContent.addComponent(buildTitle());
+		menuContent.addComponent(buildSwitcher());
 		menuContent.addComponent(buildToggleButton());
 		menuContent.addComponent(buildMenuItems());
 
@@ -54,6 +61,25 @@ public final class Menu extends CustomComponent {
 		return logoWrapper;
 	}
 
+	private Component buildSwitcher() {
+		OptionGroup sample = new OptionGroup();
+		sample.addStyleName(ValoTheme.OPTIONGROUP_HORIZONTAL);
+        for (ClientType clientType : ClientType.values()) {
+            sample.addItem(clientType);
+            sample.setItemCaption(clientType, clientType.toString());
+        }
+        sample.select(ComprasUI.CLIENT_TYPE);
+        sample.setNullSelectionAllowed(false);
+        sample.setImmediate(true);
+        sample.addValueChangeListener(new Property.ValueChangeListener() {
+			@Override
+			public void valueChange(ValueChangeEvent event) {
+				ComprasUI.CLIENT_TYPE = (ClientType) event.getProperty().getValue();
+			}
+		});
+        
+		return sample;
+	}
 
 	private Component buildToggleButton() {
 		Button valoMenuToggleButton = new Button("Menu", new ClickListener() {

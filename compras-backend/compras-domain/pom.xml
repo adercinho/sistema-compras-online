@@ -4,6 +4,7 @@
 	<artifactId>compras-domain</artifactId>
 	<name>compras-domain</name>
 	<description>Compras Domain</description>
+	<packaging>jar</packaging>
 
 	<parent>
 		<groupId>br.com.compras.backend</groupId>

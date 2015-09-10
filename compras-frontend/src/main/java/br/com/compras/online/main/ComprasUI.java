@@ -1,5 +1,6 @@
 package br.com.compras.online.main;
 
+import br.com.compras.online.client.ClientType;
 import br.com.compras.online.main.menu.MainView;
 
 import com.vaadin.annotations.Theme;
@@ -12,6 +13,7 @@ import com.vaadin.ui.themes.ValoTheme;
 @Theme("compras")
 @Title("Compras online")
 public class ComprasUI extends UI {
+	public static ClientType CLIENT_TYPE = ClientType.REST;
 	
 	@Override
 	protected void init(VaadinRequest request) {
