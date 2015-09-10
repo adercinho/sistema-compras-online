@@ -1,15 +1,14 @@
 package br.com.compras.backend.service.ws;
 
-import javax.jws.WebService;
+import java.util.List;
 
 import br.com.compras.backend.entity.Cliente;
 
-@WebService
 public interface ClienteService {
 
 	Cliente findById(Long id);
-	Cliente[] findAll();
-	Cliente[] findClientesQueRealizamReservaProdutos();
+	List<Cliente> findAll();
+	List<Cliente> findClientesQueRealizamReservaProdutos();
 	Cliente save(Cliente cliente);
 	void delete(Long id);
 		

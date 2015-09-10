@@ -2,9 +2,8 @@ package br.com.compras.backend.service.ws.impl;
 
 import java.util.List;
 
-import javax.jws.WebService;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import br.com.compras.backend.entity.Cliente;
 import br.com.compras.backend.entity.Reserva;
@@ -13,7 +12,7 @@ import br.com.compras.backend.repository.ClienteRepository;
 import br.com.compras.backend.repository.ReservaRepository;
 import br.com.compras.backend.service.ws.ReservaService;
 
-@WebService(endpointInterface = "br.com.compras.backend.service.ws.ReservaService")
+@Service
 public class ReservaServiceImpl implements ReservaService{
 
 	@Autowired
