@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.compras.backend.entity.Compra;
@@ -25,25 +24,21 @@ public class CompraService{
 	@Autowired
 	private ReservaRepository reservaRepository;
 	
-	@ResponseBody
 	@RequestMapping("/{id}")
 	public Compra findById(@PathVariable Long id) {
 		return repository.findOne(id);
 	}
 	
-	@ResponseBody
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping
 	public List<Compra> findAll() {
 		return (List<Compra>) repository.findAll();
 	}
 	
-	@ResponseBody
 	@RequestMapping("/findComprasMaiorQueQuinhentosReais")
 	public List<Compra> findComprasMaiorQueQuinhentosReais() {
 		return repository.findComprasMaiorQueQuinhentosReais();
 	}
 	
-	@ResponseBody
 	@RequestMapping(method = {RequestMethod.PUT, RequestMethod.POST})
 	public Compra save(@RequestBody Compra compra) throws BusinessException {
 		Reserva reserva = reservaRepository.findOne(compra.getReserva().getId());
@@ -54,7 +49,6 @@ public class CompraService{
 		return repository.save(compra);
 	}
 	
-	@ResponseBody
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public void delete(@PathVariable Long id) {
 		repository.delete(repository.findOne(id));
