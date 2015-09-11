@@ -25,9 +25,8 @@ public class ReservaServiceImpl implements ReservaService{
 		return repository.findOne(id);
 	}
 	
-	public Reserva[] findAll() {
-		List<Reserva> lista = (List<Reserva>) repository.findAll();
-		return lista.toArray(new Reserva[lista.size()]);
+	public List<Reserva> findAll() {
+		return (List<Reserva>) repository.findAll();
 	}
 	
 	public Reserva save(Reserva reserva) throws BusinessException {

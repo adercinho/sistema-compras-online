@@ -1,0 +1,99 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://compras.com.br/backend/service/ws/complextype/produto" 
+	targetNamespace="http://compras.com.br/backend/service/ws/complextype/produto"
+	elementFormDefault="qualified">
+
+	<xs:element name="getProdutoRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="id" type="xs:long" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="getProdutoResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="produto" type="tns:produto" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<!-- Save Produto Request -->
+	
+	<xs:element name="saveProdutoRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="produto" type="tns:produto" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="saveProdutoResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="produto" type="tns:produto" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<!-- List All Produto Request -->
+	
+	<xs:element name="listAllProdutoRequest">
+	<xs:complexType>
+			<xs:sequence>				
+			</xs:sequence>
+		</xs:complexType>		
+	</xs:element>
+
+	<xs:element name="listAllProdutoResponse">
+		<xs:complexType>
+			<xs:sequence>
+			<xs:element name="allProdutos" type="tns:produto" nillable="true" minOccurs="0" maxOccurs="unbounded"/>				
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<!-- List All Produtos Menor que Mil Reais Request -->
+	
+	<xs:element name="listAllProdutosMenorQueMilReaisRequest">
+	<xs:complexType>
+			<xs:sequence>				
+			</xs:sequence>
+		</xs:complexType>		
+	</xs:element>
+
+	<xs:element name="listAllProdutosMenorQueMilReaisResponse">
+		<xs:complexType>
+			<xs:sequence>
+			<xs:element name="allProdutosMenorQueMilReais" type="tns:produto" nillable="true" minOccurs="0" maxOccurs="unbounded"/>				
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<!-- delete Produto Request -->
+	
+	<xs:element name="deleteProdutoRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="id" type="xs:long" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="deleteProdutoResponse">
+		<xs:complexType>
+			<xs:sequence>				
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="produto">
+		<xs:sequence>
+			<xs:element name="id" type="xs:long" />
+			<xs:element name="descricao" type="xs:string" />
+			<xs:element name="preco" type="xs:decimal" />
+			<xs:element name="estoque" type="xs:int" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

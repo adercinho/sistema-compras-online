@@ -2,11 +2,11 @@
 // Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.2.7 
 // Consulte <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas as modificações neste arquivo serão perdidas após a recompilação do esquema de origem. 
-// Gerado em: 2015.09.10 às 02:44:41 AM BRT 
+// Gerado em: 2015.09.11 às 02:24:57 AM BRT 
 //
 
 
-package br.com.compras.backend.service.ws.endpoint.soap;
+package br.com.compras.backend.service.ws.complextype.cliente;
 
 import javax.xml.bind.annotation.XmlRegistry;
 
@@ -16,7 +16,7 @@ import br.com.compras.backend.entity.Cliente;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the com.mycompany.services.soap package. 
+ * generated in the br.com.compras.backend.service.ws.complextype.cliente package. 
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -32,18 +32,18 @@ public class ObjectFactory {
 
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.mycompany.services.soap
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: br.com.compras.backend.service.ws.complextype.cliente
      * 
      */
     public ObjectFactory() {
     }
 
     /**
-     * Create an instance of {@link GetClienteResponse }
+     * Create an instance of {@link ListAllClientesQueRealizamReservaProdutosResponse }
      * 
      */
-    public GetClienteResponse createGetClienteResponse() {
-        return new GetClienteResponse();
+    public ListAllClientesQueRealizamReservaProdutosResponse createListAllClientesQueRealizamReservaProdutosResponse() {
+        return new ListAllClientesQueRealizamReservaProdutosResponse();
     }
 
     /**
@@ -52,6 +52,14 @@ public class ObjectFactory {
      */
     public Cliente createCliente() {
         return new Cliente();
+    }
+
+    /**
+     * Create an instance of {@link GetClienteResponse }
+     * 
+     */
+    public GetClienteResponse createGetClienteResponse() {
+        return new GetClienteResponse();
     }
 
     /**
@@ -84,6 +92,14 @@ public class ObjectFactory {
      */
     public SaveClienteRequest createSaveClienteRequest() {
         return new SaveClienteRequest();
+    }
+
+    /**
+     * Create an instance of {@link ListAllClientesQueRealizamReservaProdutosRequest }
+     * 
+     */
+    public ListAllClientesQueRealizamReservaProdutosRequest createListAllClientesQueRealizamReservaProdutosRequest() {
+        return new ListAllClientesQueRealizamReservaProdutosRequest();
     }
 
     /**

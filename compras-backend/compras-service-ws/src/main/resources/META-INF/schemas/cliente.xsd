@@ -1,5 +1,6 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:tns="http://mycompany.com/services/soap" targetNamespace="http://mycompany.com/services/soap"
+	xmlns:tns="http://compras.com.br/backend/service/ws/complextype/cliente" 
+	targetNamespace="http://compras.com.br/backend/service/ws/complextype/cliente"
 	elementFormDefault="qualified">
 
 	<xs:element name="getClienteRequest">
@@ -49,6 +50,23 @@
 		<xs:complexType>
 			<xs:sequence>
 			<xs:element name="allClientes" type="tns:cliente" nillable="true" minOccurs="0" maxOccurs="unbounded"/>				
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<!-- List All Clientes Que Realizam Reserva de Produtos Request -->
+	
+	<xs:element name="listAllClientesQueRealizamReservaProdutosRequest">
+	<xs:complexType>
+			<xs:sequence>				
+			</xs:sequence>
+		</xs:complexType>		
+	</xs:element>
+
+	<xs:element name="listAllClientesQueRealizamReservaProdutosResponse">
+		<xs:complexType>
+			<xs:sequence>
+			<xs:element name="allClientesQueRealizamReservaProdutos" type="tns:cliente" nillable="true" minOccurs="0" maxOccurs="unbounded"/>				
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>

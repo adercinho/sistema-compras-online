@@ -1,0 +1,114 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://compras.com.br/backend/service/ws/complextype/compra" 
+	targetNamespace="http://compras.com.br/backend/service/ws/complextype/compra"
+	elementFormDefault="qualified">
+
+	<xs:element name="getCompraRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="id" type="xs:long" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="getCompraResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="compra" type="tns:compra" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<!-- Save Compra Request -->
+	
+	<xs:element name="saveCompraRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="compra" type="tns:compra" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="saveCompraResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="compra" type="tns:compra" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<!-- List All Compra Request -->
+	
+	<xs:element name="listAllCompraRequest">
+	<xs:complexType>
+			<xs:sequence>				
+			</xs:sequence>
+		</xs:complexType>		
+	</xs:element>
+
+	<xs:element name="listAllCompraResponse">
+		<xs:complexType>
+			<xs:sequence>
+			<xs:element name="allCompras" type="tns:compra" nillable="true" minOccurs="0" maxOccurs="unbounded"/>				
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<!-- List All Compras Maior Que Quinhentos Reais Request -->
+	
+	<xs:element name="listAllComprasMaiorQueQuinhentosReaisRequest">
+	<xs:complexType>
+			<xs:sequence>				
+			</xs:sequence>
+		</xs:complexType>		
+	</xs:element>
+
+	<xs:element name="listAllComprasMaiorQueQuinhentosReaisResponse">
+		<xs:complexType>
+			<xs:sequence>
+			<xs:element name="allComprasMaiorQueQuinhentosReais" type="tns:compra" nillable="true" minOccurs="0" maxOccurs="unbounded"/>				
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<!-- delete Compra Request -->
+	
+	<xs:element name="deleteCompraRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="id" type="xs:long" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="deleteCompraResponse">
+		<xs:complexType>
+			<xs:sequence>				
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="compra">
+		<xs:sequence>
+			<xs:element name="numero" type="xs:long" />
+			<xs:element name="data" type="xs:dateTime" />
+			<xs:element name="responsavel" type="xs:string" />
+			<xs:element name="situacao" type="tns:situacao" />
+			<xs:element name="valor" type="xs:decimal" />
+			<xs:element name="reserva" type="tns:reserva" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="reserva">
+		<xs:sequence>
+			<xs:element name="id" type="xs:long" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:simpleType name="situacao">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ATIVO" />
+			<xs:enumeration value="INATIVO" />
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

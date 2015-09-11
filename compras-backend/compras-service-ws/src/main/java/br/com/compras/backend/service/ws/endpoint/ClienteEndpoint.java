@@ -11,20 +11,22 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 import br.com.compras.backend.entity.Cliente;
 import br.com.compras.backend.service.ws.ClienteService;
-import br.com.compras.backend.service.ws.endpoint.soap.DeleteClienteRequest;
-import br.com.compras.backend.service.ws.endpoint.soap.DeleteClienteResponse;
-import br.com.compras.backend.service.ws.endpoint.soap.GetClienteRequest;
-import br.com.compras.backend.service.ws.endpoint.soap.GetClienteResponse;
-import br.com.compras.backend.service.ws.endpoint.soap.ListAllClienteRequest;
-import br.com.compras.backend.service.ws.endpoint.soap.ListAllClienteResponse;
-import br.com.compras.backend.service.ws.endpoint.soap.SaveClienteRequest;
-import br.com.compras.backend.service.ws.endpoint.soap.SaveClienteResponse;
+import br.com.compras.backend.service.ws.complextype.cliente.DeleteClienteRequest;
+import br.com.compras.backend.service.ws.complextype.cliente.DeleteClienteResponse;
+import br.com.compras.backend.service.ws.complextype.cliente.GetClienteRequest;
+import br.com.compras.backend.service.ws.complextype.cliente.GetClienteResponse;
+import br.com.compras.backend.service.ws.complextype.cliente.ListAllClienteRequest;
+import br.com.compras.backend.service.ws.complextype.cliente.ListAllClienteResponse;
+import br.com.compras.backend.service.ws.complextype.cliente.ListAllClientesQueRealizamReservaProdutosRequest;
+import br.com.compras.backend.service.ws.complextype.cliente.ListAllClientesQueRealizamReservaProdutosResponse;
+import br.com.compras.backend.service.ws.complextype.cliente.SaveClienteRequest;
+import br.com.compras.backend.service.ws.complextype.cliente.SaveClienteResponse;
 
 
 @Endpoint
 public class ClienteEndpoint {
 
-	private static final String NAMESPACE_URI = "http://mycompany.com/services/soap";
+	public static final String NAMESPACE_URI = "http://compras.com.br/backend/service/ws/complextype/cliente";
 	@Autowired
 	private ClienteService clienteService;
 
@@ -64,6 +66,19 @@ public class ClienteEndpoint {
 			clienteList.add(cliente);
 		}		
 		response.getAllClientes().addAll(clienteList);
+		return response;
+	}
+	
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "listAllClientesQueRealizamReservaProdutosRequest")
+	@ResponsePayload
+	public ListAllClientesQueRealizamReservaProdutosResponse listAllClientesQueRealizamReservaProdutos(@RequestPayload ListAllClientesQueRealizamReservaProdutosRequest request) {		
+		ListAllClientesQueRealizamReservaProdutosResponse response = new ListAllClientesQueRealizamReservaProdutosResponse();
+		List<Cliente> clienteList = new ArrayList<Cliente>();
+		Iterable<Cliente> clienteIt = clienteService.findClientesQueRealizamReservaProdutos();
+		for(Cliente cliente : clienteIt){
+			clienteList.add(cliente);
+		}		
+		response.getAllClientesQueRealizamReservaProdutos().addAll(clienteList);
 		return response;
 	}
 

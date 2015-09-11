@@ -24,9 +24,8 @@ public class CompraServiceImpl implements CompraService{
 		return repository.findOne(id);
 	}
 	
-	public Compra[] findAll() {
-		List<Compra> lista = (List<Compra>) repository.findAll();
-		return lista.toArray(new Compra[lista.size()]);
+	public List<Compra> findAll() {
+		return (List<Compra>) repository.findAll();
 	}
 	
 	public Compra save(Compra compra) throws BusinessException {
@@ -42,8 +41,7 @@ public class CompraServiceImpl implements CompraService{
 		repository.delete(repository.findOne(id));
 	}
 
-	public Compra[] findComprasMaiorQueQuinhentosReais() {
-		List<Compra> lista = repository.findComprasMaiorQueQuinhentosReais();
-		return lista.toArray(new Compra[lista.size()]);
+	public List<Compra> findComprasMaiorQueQuinhentosReais() {
+		return repository.findComprasMaiorQueQuinhentosReais();
 	}
 }

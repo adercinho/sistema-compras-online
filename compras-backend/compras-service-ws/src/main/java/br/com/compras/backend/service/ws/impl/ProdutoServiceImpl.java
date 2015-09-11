@@ -19,9 +19,8 @@ public class ProdutoServiceImpl implements ProdutoService{
 		return repository.findOne(id);
 	}
 	
-	public Produto[] findAll() {
-		List<Produto> lista = (List<Produto>) repository.findAll();
-		return lista.toArray(new Produto[lista.size()]);
+	public List<Produto> findAll() {
+		return (List<Produto>) repository.findAll();
 	}
 	
 	public Produto save(Produto produto) {
@@ -32,8 +31,7 @@ public class ProdutoServiceImpl implements ProdutoService{
 		repository.delete(repository.findOne(id));
 	}
 
-	public Produto[] findProdutosMenorQueMilReais() {
-		List<Produto> lista = repository.findProdutosMenorQueMilReais();
-		return lista.toArray(new Produto[lista.size()]);
+	public List<Produto> findProdutosMenorQueMilReais() {
+		return repository.findProdutosMenorQueMilReais();
 	}
 }

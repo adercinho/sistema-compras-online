@@ -1,0 +1,97 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://compras.com.br/backend/service/ws/complextype/reserva" 
+	targetNamespace="http://compras.com.br/backend/service/ws/complextype/reserva"
+	elementFormDefault="qualified">
+
+	<xs:element name="getReservaRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="id" type="xs:long" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="getReservaResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="reserva" type="tns:reserva" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<!-- Save Reserva Request -->
+	
+	<xs:element name="saveReservaRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="reserva" type="tns:reserva" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="saveReservaResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="reserva" type="tns:reserva" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<!-- List All Reserva Request -->
+	
+	<xs:element name="listAllReservaRequest">
+	<xs:complexType>
+			<xs:sequence>				
+			</xs:sequence>
+		</xs:complexType>		
+	</xs:element>
+
+	<xs:element name="listAllReservaResponse">
+		<xs:complexType>
+			<xs:sequence>
+			<xs:element name="allReservas" type="tns:reserva" nillable="true" minOccurs="0" maxOccurs="unbounded"/>				
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<!-- delete Reserva Request -->
+	
+	<xs:element name="deleteReservaRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="id" type="xs:long" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="deleteReservaResponse">
+		<xs:complexType>
+			<xs:sequence>				
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="reserva">
+		<xs:sequence>
+			<xs:element name="id" type="xs:long" />
+			<xs:element name="data" type="xs:dateTime" />
+			<xs:element name="atendente" type="xs:string" />
+			<xs:element name="situacao" type="tns:situacao" />
+			<xs:element name="valor" type="xs:decimal" />
+			<xs:element name="cliente" type="tns:cliente" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="cliente">
+		<xs:sequence>
+			<xs:element name="id" type="xs:long" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:simpleType name="situacao">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ATIVO" />
+			<xs:enumeration value="INATIVO" />
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

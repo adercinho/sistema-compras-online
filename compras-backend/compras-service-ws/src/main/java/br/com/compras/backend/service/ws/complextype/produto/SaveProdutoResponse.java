@@ -2,11 +2,11 @@
 // Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.2.7 
 // Consulte <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas as modificações neste arquivo serão perdidas após a recompilação do esquema de origem. 
-// Gerado em: 2015.09.10 às 02:44:41 AM BRT 
+// Gerado em: 2015.09.11 às 02:24:57 AM BRT 
 //
 
 
-package br.com.compras.backend.service.ws.endpoint.soap;
+package br.com.compras.backend.service.ws.complextype.produto;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-import br.com.compras.backend.entity.Cliente;
+import br.com.compras.backend.entity.Produto;
 
 
 /**
@@ -27,7 +27,7 @@ import br.com.compras.backend.entity.Cliente;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="cliente" type="{http://mycompany.com/services/soap}cliente"/>
+ *         &lt;element name="produto" type="{http://compras.com.br/backend/service/ws/complextype/produto}produto"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -38,36 +38,36 @@ import br.com.compras.backend.entity.Cliente;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "cliente"
+    "produto"
 })
-@XmlRootElement(name = "saveClienteResponse")
-public class SaveClienteResponse {
+@XmlRootElement(name = "saveProdutoResponse")
+public class SaveProdutoResponse {
 
     @XmlElement(required = true)
-    protected Cliente cliente;
+    protected Produto produto;
 
     /**
-     * Obtém o valor da propriedade cliente.
+     * Obtém o valor da propriedade produto.
      * 
      * @return
      *     possible object is
-     *     {@link Cliente }
+     *     {@link Produto }
      *     
      */
-    public Cliente getCliente() {
-        return cliente;
+    public Produto getProduto() {
+        return produto;
     }
 
     /**
-     * Define o valor da propriedade cliente.
+     * Define o valor da propriedade produto.
      * 
      * @param value
      *     allowed object is
-     *     {@link Cliente }
+     *     {@link Produto }
      *     
      */
-    public void setCliente(Cliente value) {
-        this.cliente = value;
+    public void setProduto(Produto value) {
+        this.produto = value;
     }
 
 }
