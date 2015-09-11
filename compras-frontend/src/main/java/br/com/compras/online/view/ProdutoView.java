@@ -1,10 +1,11 @@
 package br.com.compras.online.view;
 
+import java.math.BigDecimal;
 import java.util.List;
 
-import br.com.compras.backend.entity.Cliente;
+import br.com.compras.backend.entity.Produto;
 import br.com.compras.online.client.ServiceClient;
-import br.com.compras.online.client.services.ClienteService;
+import br.com.compras.online.client.services.ProdutoService;
 import br.com.compras.online.main.ComprasUI;
 import br.com.compras.online.utils.BaseForm;
 import br.com.compras.online.utils.DefaultWindow;
@@ -24,13 +25,13 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
 
-public class ClienteView extends BaseView {
+public class ProdutoView extends BaseView {
 	private final VerticalLayout verticalLayout = new VerticalLayout();
 	private final TableContainer container = new TableContainer();
 
-	public ClienteView() {
+	public ProdutoView() {
 		buildView();
-		addTab(verticalLayout, "Cliente", false);
+		addTab(verticalLayout, "Produto", false);
 	}
 
 	public void buildView() {
@@ -43,13 +44,13 @@ public class ClienteView extends BaseView {
 	public Component buildHeader() {
 		Component header = super.buildHeader();
 		
-		Button exibir = new Button("Exibir clientes que realizaram reserva");
+		Button exibir = new Button("Exibir produtos com preço menor que mil reais");
 		exibir.setImmediate(true);
 		exibir.addClickListener(new Button.ClickListener() {
 			@Override
 			public void buttonClick(ClickEvent event) {
-				ClienteService service = ServiceClient.getClienteService(ComprasUI.CLIENT_TYPE);
-				container.populate(service.findClientesQueRealizamReservaProdutos());
+				ProdutoService service = ServiceClient.getProdutoService(ComprasUI.CLIENT_TYPE);
+				container.populate(service.findProdutosMenorQueMilReais());
 			}
 		});
 		getHeader().addComponent(exibir);
@@ -61,8 +62,8 @@ public class ClienteView extends BaseView {
 		Table table = new Table();
 		table.setContainerDataSource(container);
 		table.setSizeFull();
-		table.setVisibleColumns("id", "nome", "endereco", "telefone");
-		table.setColumnHeaders("Id", "Nome", "Endereço", "Telefone");
+		table.setVisibleColumns("codigo", "descricao", "preco", "estoque");
+		table.setColumnHeaders("Código", "Descrição", "Preço", "Estoque");
 		
 		table.addGeneratedColumn("action", new TableColumnGenerator());
 		table.setColumnHeader("action", "Ações");
@@ -73,14 +74,14 @@ public class ClienteView extends BaseView {
 
 	@Override
 	public void incluir() {
-		DefaultWindow.open(new IncluirWindow(), "Novo cliente", null, null);
+		DefaultWindow.open(new IncluirWindow(), "Novo produto", null, null);
 	}
 
 	@Override
 	public void buscar() {
-		ClienteService service = ServiceClient.getClienteService(ComprasUI.CLIENT_TYPE);
-		Cliente cliente = service.findById(Long.parseLong(getTxtId().getValue()));
-		container.populate(cliente);
+		ProdutoService service = ServiceClient.getProdutoService(ComprasUI.CLIENT_TYPE);
+		Produto produto = service.findById(Long.parseLong(getTxtId().getValue()));
+		container.populate(produto);
 	}
 
 	@Override
@@ -89,33 +90,33 @@ public class ClienteView extends BaseView {
 		container.populate();
 	}
 	
-	class TableContainer extends BeanItemContainer<Cliente> {
+	class TableContainer extends BeanItemContainer<Produto> {
 
 		public TableContainer()
 				throws IllegalArgumentException {
-			super(Cliente.class);
+			super(Produto.class);
 			populate();
 		}
 		
 		public void populate() {
 			try {
 				removeAllItems();
-				ClienteService service = ServiceClient.getClienteService(ComprasUI.CLIENT_TYPE);
+				ProdutoService service = ServiceClient.getProdutoService(ComprasUI.CLIENT_TYPE);
 				populate(service.findAll());
 			} catch (Exception e) {
 				Message.ERROR.show("Erro ao buscar os dados. Detalhes: " + e.getMessage());
 			}
 		}
 		
-		public void populate(List<Cliente> clienteList) {
+		public void populate(List<Produto> produtoList) {
 			removeAllItems();
-			addAll(clienteList);
+			addAll(produtoList);
 		}
 		
-		public void populate(Cliente cliente) {
+		public void populate(Produto produto) {
 			removeAllItems();
-			if (cliente != null)
-				addItem(cliente);
+			if (produto != null)
+				addItem(produto);
 		}
 	}
 	
@@ -123,7 +124,7 @@ public class ClienteView extends BaseView {
 		public TableColumnGenerator() {}
 		@Override
 		public Object generateCell(Table source, Object itemId, Object columnId) {
-			final Cliente cliente = (Cliente) itemId;
+			final Produto produto = (Produto) itemId;
 			if (columnId.toString().equals("action")) {
 				Button excluir = new Button(FontAwesome.TRASH_O);
 				excluir.addStyleName(ValoTheme.BUTTON_DANGER);
@@ -134,13 +135,13 @@ public class ClienteView extends BaseView {
 					@Override
 					public void buttonClick(ClickEvent event) {
 						try {
-//							if (cliente.getReservaList().isEmpty()) {
-								ClienteService service = ServiceClient.getClienteService(ComprasUI.CLIENT_TYPE);
-								service.delete(cliente.getId());
-								container.removeItem(cliente);
+//							if (produto.getReservaList().isEmpty()) {
+								ProdutoService service = ServiceClient.getProdutoService(ComprasUI.CLIENT_TYPE);
+								service.delete(produto.getCodigo());
+								container.removeItem(produto);
 								Message.DELETE_SUCCESS.show();
 //							} else {
-//								Message.ALERT.show("o cliente " + cliente.getNome() + " possui reservas efetuadas, "
+//								Message.ALERT.show("o produto " + produto.getNome() + " possui reservas efetuadas, "
 //										+ "não será possivel exlui-lo");
 //							}
 						} catch (Exception e) {
@@ -158,50 +159,51 @@ public class ClienteView extends BaseView {
 	class IncluirWindow extends BaseForm {
 		
 		private final FieldGroup binder;
-		private final BeanItem<Cliente> item;
-		private TextField nomeField;
-		private TextField enderecoField;
-		private TextField telefoneField;
+		private final BeanItem<Produto> item;
+		private TextField descricaoField;
+		private TextField precoField;
+		private TextField estoqueField;
 		
 		public IncluirWindow() {
-			item = new BeanItem<Cliente>(new Cliente());
+			item = new BeanItem<Produto>(new Produto());
 			binder = new FieldGroup(item);
 			buildForm();
 		}
 		
 		private void buildForm() {
-			nomeField = new TextField("Nome");
-			nomeField.setStyleName(ValoTheme.TEXTFIELD_SMALL);
-			nomeField.setNullRepresentation("");
-			nomeField.setImmediate(true);
-			nomeField.setMaxLength(60);
-			nomeField.setRequired(true);
-			nomeField.setRequiredError("Nome é obrigatório");
+			descricaoField = new TextField("Descrição");
+			descricaoField.setStyleName(ValoTheme.TEXTFIELD_SMALL);
+			descricaoField.setNullRepresentation("");
+			descricaoField.setImmediate(true);
+			descricaoField.setMaxLength(60);
+			descricaoField.setRequired(true);
+			descricaoField.setRequiredError(descricaoField.getCaption() + " é obrigatório");
 			
-			enderecoField = new TextField("Endereço");
-			enderecoField.setStyleName(ValoTheme.TEXTFIELD_SMALL);
-			enderecoField.setNullRepresentation("");
-			enderecoField.setImmediate(true);
-			enderecoField.setMaxLength(60);
-			enderecoField.setRequired(true);
-			enderecoField.setRequiredError("Endereço é obrigatório");
+			precoField = new TextField("Preço");
+			precoField.setStyleName(ValoTheme.TEXTFIELD_SMALL);
+			precoField.setNullRepresentation("");
+			precoField.setImmediate(true);
+			precoField.setMaxLength(60);
+			precoField.setConverter(BigDecimal.class);
+			precoField.setRequired(true);
+			precoField.setRequiredError(precoField.getCaption() + " é obrigatório");
 			
-			telefoneField = new TextField("Telefone cliente");
-			telefoneField.setStyleName(ValoTheme.TEXTFIELD_SMALL);
-			telefoneField.setStyleName(ValoTheme.TEXTFIELD_ALIGN_RIGHT);
-			telefoneField.setNullRepresentation("");
-			telefoneField.setImmediate(true);
-			telefoneField.setMaxLength(11);
-			telefoneField.setRequired(true);
-			telefoneField.setRequiredError("Telefone é obrigatório");
+			estoqueField = new TextField("Estoque");
+			estoqueField.setStyleName(ValoTheme.TEXTFIELD_SMALL);
+			estoqueField.setStyleName(ValoTheme.TEXTFIELD_ALIGN_RIGHT);
+			estoqueField.setNullRepresentation("");
+			estoqueField.setImmediate(true);
+			estoqueField.setMaxLength(11);
+			estoqueField.setRequired(true);
+			estoqueField.setRequiredError(estoqueField.getCaption() + " é obrigatório");
 			
-			binder.bind(nomeField, "nome");
-			binder.bind(enderecoField, "endereco");
-			binder.bind(telefoneField, "telefone");
+			binder.bind(descricaoField, "descricao");
+			binder.bind(precoField, "preco");
+			binder.bind(estoqueField, "estoque");
 			
-			addComponent(nomeField);
-			addComponent(enderecoField);
-			addComponent(telefoneField);
+			addComponent(descricaoField);
+			addComponent(precoField);
+			addComponent(estoqueField);
 		}
 
 		@Override
@@ -209,9 +211,9 @@ public class ClienteView extends BaseView {
 			try {
 				if (binder.isValid()) {
 					binder.commit();
-					ClienteService service = ServiceClient.getClienteService(ComprasUI.CLIENT_TYPE);
-					Cliente cliente = service.save(item.getBean());
-					container.addItem(cliente);
+					ProdutoService service = ServiceClient.getProdutoService(ComprasUI.CLIENT_TYPE);
+					Produto produto = service.save(item.getBean());
+					container.addItem(produto);
 					Message.SAVE_SUCCESS.show();
 					if (getWindow() != null)
 						getWindow().close();

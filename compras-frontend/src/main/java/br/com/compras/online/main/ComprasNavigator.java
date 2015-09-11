@@ -10,7 +10,7 @@ import com.vaadin.ui.ComponentContainer;
 import com.vaadin.ui.UI;
 
 public class ComprasNavigator extends Navigator {
-	private static final ViewType ERROR_VIEW = ViewType.TESTE;
+	private static final ViewType ERROR_VIEW = ViewType.CLIENTE;
 	private ViewProvider errorViewProvider;
 	
 	public ComprasNavigator(final ComponentContainer container) {

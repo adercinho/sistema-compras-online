@@ -10,8 +10,11 @@ import com.sun.jersey.api.client.config.DefaultClientConfig;
 import com.sun.jersey.api.json.JSONConfiguration;
 
 import br.com.compras.online.client.rest.ClienteRest;
+import br.com.compras.online.client.rest.ProdutoRest;
 import br.com.compras.online.client.services.ClienteService;
+import br.com.compras.online.client.services.ProdutoService;
 import br.com.compras.online.client.soap.ClienteSoap;
+import br.com.compras.online.client.soap.ProdutoSoap;
 
 
 public class ServiceClient {
@@ -20,6 +23,14 @@ public class ServiceClient {
 			return new ClienteRest(clientType.getApplicationURI());
 		} else {
 			return new ClienteSoap(clientType.getApplicationURI());
+		}
+	}
+	
+	public static ProdutoService getProdutoService(ClientType clientType) {
+		if (clientType == ClientType.REST) {
+			return new ProdutoRest(clientType.getApplicationURI());
+		} else {
+			return new ProdutoSoap(clientType.getApplicationURI());
 		}
 	}
 	
