@@ -1,5 +1,7 @@
 package br.com.compras.online.client;
 
+import javax.ws.rs.core.MediaType;
+
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
@@ -21,7 +23,7 @@ public class ServiceClient {
 		}
 	}
 	
-	public static ClientResponse getRestResponse(String serviceResource) {
+	private static WebResource getWebResource(String serviceResource) {
 		ClientConfig clientConfig = new DefaultClientConfig();
 		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
 		
@@ -29,10 +31,29 @@ public class ServiceClient {
 		
 		WebResource webResource = client.resource(serviceResource);
 		
-		ClientResponse clientResponse = webResource.accept("application/json")
-												   .type("application/json")
+		return webResource;
+	}
+	
+	public static ClientResponse getClientResponseGET(String serviceResource) {
+		WebResource webResource = getWebResource(serviceResource);
+		
+		return webResource.accept(MediaType.APPLICATION_JSON)
+												   .type(MediaType.APPLICATION_JSON)
 												   .get(ClientResponse.class);
 		
-		return clientResponse;
+	}
+	
+	public static ClientResponse getClientResponsePOST(String serviceResource, Object obj) {
+		WebResource webResource = getWebResource(serviceResource);
+		
+		return webResource.accept(MediaType.APPLICATION_JSON)
+				   								   .type(MediaType.APPLICATION_JSON)
+				   								   .post(ClientResponse.class, obj);
+	}
+	
+	public static ClientResponse getClientResponseDELETE(String serviceResource) {
+		WebResource webResource = getWebResource(serviceResource);
+		
+		return webResource.delete(ClientResponse.class);
 	}
 }

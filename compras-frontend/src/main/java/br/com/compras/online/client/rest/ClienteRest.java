@@ -20,7 +20,7 @@ public class ClienteRest implements ClienteService {
 	
 	@Override
 	public Cliente findById(Long id) {
-		ClientResponse response  = ServiceClient.getRestResponse(applicationURI + "/cliente/" + id);
+		ClientResponse response  = ServiceClient.getClientResponseGET(applicationURI + "/cliente/" + id);
 		
 		if (response.getStatus() != 200) {
 			throw new RuntimeException("Falha : código do erro HTTP : " + response.getStatus());
@@ -35,7 +35,7 @@ public class ClienteRest implements ClienteService {
 
 	@Override
 	public List<Cliente> findAll() {
-		ClientResponse response  = ServiceClient.getRestResponse(applicationURI + "/cliente");
+		ClientResponse response  = ServiceClient.getClientResponseGET(applicationURI + "/cliente");
 		
 		if (response.getStatus() != 200) {
 			throw new RuntimeException("Falha : código do erro HTTP : " + response.getStatus());
@@ -50,19 +50,40 @@ public class ClienteRest implements ClienteService {
 
 	@Override
 	public Cliente save(Cliente entity) {
-		// TODO Auto-generated method stub
-		return null;
+		ClientResponse response = ServiceClient.getClientResponsePOST(applicationURI + "/cliente", entity);
+		
+		if (response.getStatus() != 200) {
+			throw new RuntimeException("Falha : código do erro HTTP : " + response.getStatus());
+		}
+		
+		try {
+			return response.getEntity(Cliente.class);
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	@Override
 	public void delete(Long id) {
-		// TODO Auto-generated method stub
+		ClientResponse response = ServiceClient.getClientResponseDELETE(applicationURI + "/cliente/" + id);
 		
+		if (response.getStatus() != 200) {
+			throw new RuntimeException("Falha : código do erro HTTP : " + response.getStatus());
+		}
 	}
 	
 	@Override
 	public List<Cliente> findClientesQueRealizamReservaProdutos() {
-		// TODO Auto-generated method stub
-		return null;
+		ClientResponse response  = ServiceClient.getClientResponseGET(applicationURI + "/cliente/findClientesQueRealizamReservaProdutos");
+		
+		if (response.getStatus() != 200) {
+			throw new RuntimeException("Falha : código do erro HTTP : " + response.getStatus());
+		}
+		
+		try {
+			return response.getEntity(new GenericType<List<Cliente>>(){});
+		} catch (Exception e) {
+			return new ArrayList<Cliente>();
+		}
 	}
 }
