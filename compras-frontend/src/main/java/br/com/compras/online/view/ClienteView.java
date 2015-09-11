@@ -58,7 +58,8 @@ public class ClienteView extends BaseView {
 		exibir.addClickListener(new Button.ClickListener() {
 			@Override
 			public void buttonClick(ClickEvent event) {
-				// TODO Auto-generated method stub
+				ClienteService service = ServiceClient.getClienteService(ComprasUI.CLIENT_TYPE);
+				container.populate(service.findClientesQueRealizamReservaProdutos());
 			}
 		});
 		
@@ -83,16 +84,25 @@ public class ClienteView extends BaseView {
 				if (txtId.getValue() != null && !txtId.getValue().isEmpty()) {
 					ClienteService service = ServiceClient.getClienteService(ComprasUI.CLIENT_TYPE);
 					Cliente cliente = service.findById(Long.parseLong(txtId.getValue()));
-					if (cliente != null)
-						container.populate(cliente);
-					else
-						container.removeAllItems();
+					container.populate(cliente);
 				}
+			}
+		});
+		
+		Button limpar = new Button(FontAwesome.ERASER);
+		limpar.addStyleName(ValoTheme.BUTTON_DANGER);
+		limpar.setImmediate(true);
+		limpar.addClickListener(new Button.ClickListener() {
+			@Override
+			public void buttonClick(ClickEvent event) {
+				txtId.setValue(null);
+				container.populate();
 			}
 		});
 		
 		h2.addComponent(txtId);
 		h2.addComponent(buscar);
+		h2.addComponent(limpar);
 		
 		h1.addComponent(h2);
 		h1.addComponent(incluir);
@@ -117,6 +127,7 @@ public class ClienteView extends BaseView {
 		}
 		
 		public void populate() {
+			removeAllItems();
 			ClienteService service = ServiceClient.getClienteService(ComprasUI.CLIENT_TYPE);
 			populate(service.findAll());
 		}
@@ -128,7 +139,8 @@ public class ClienteView extends BaseView {
 		
 		public void populate(Cliente cliente) {
 			removeAllItems();
-			addItem(cliente);
+			if (cliente != null)
+				addItem(cliente);
 		}
 	}
 }
