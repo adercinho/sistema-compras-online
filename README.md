@@ -42,26 +42,26 @@ $ cd sistema-compras-online/compras-frontend
 $ mvn jetty:run
 ```
 
-Acesso a URL:
+Acesso ao aplicação:
 ------
-[http://localhost:8080/compras-frontend/](http://localhost:8080/compras-frontend/)
+[http://localhost:8080/compras-frontend/](http://localhost:8080/compras-frontend/) <br>
 
 
 Localizalção REST:
 ---------
 
-[http://localhost:8081/rs/cliente](http://localhost:8081/rs/cliente)
-[http://localhost:8081/rs/produto](http://localhost:8081/rs/produto)
-[http://localhost:8081/rs/reserva](http://localhost:8081/rs/reserva)
-[http://localhost:8081/rs/compra](http://localhost:8081/rs/compra)
+[http://localhost:8081/rs/cliente](http://localhost:8081/rs/cliente) <br>
+[http://localhost:8081/rs/produto](http://localhost:8081/rs/produto) <br>
+[http://localhost:8081/rs/reserva](http://localhost:8081/rs/reserva) <br>
+[http://localhost:8081/rs/compra](http://localhost:8081/rs/compra) <br>
 
 
 Localizalção WSDL:
 ---------
-[http://localhost:8082/ws/cliente.wsdl](http://localhost:8082/ws/cliente.wsdl)
-[http://localhost:8082/ws/produto.wsdl](http://localhost:8082/ws/produto.wsdl)
-[http://localhost:8082/ws/reserva.wsdl](http://localhost:8082/ws/reserva.wsdl)
-[http://localhost:8082/ws/compra.wsdl](http://localhost:8082/ws/compra.wsdl)
+[http://localhost:8082/ws/cliente.wsdl](http://localhost:8082/ws/cliente.wsdl) <br>
+[http://localhost:8082/ws/produto.wsdl](http://localhost:8082/ws/produto.wsdl) <br>
+[http://localhost:8082/ws/reserva.wsdl](http://localhost:8082/ws/reserva.wsdl) <br>
+[http://localhost:8082/ws/compra.wsdl](http://localhost:8082/ws/compra.wsdl) <br>
 
 
 
