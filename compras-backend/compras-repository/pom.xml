@@ -9,7 +9,7 @@
 	<description>Compras Repository</description>
 
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>1.7</java.version>
 		<compras.domain.version>0.0.1-SNAPSHOT</compras.domain.version>
 	</properties>
 	
