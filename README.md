@@ -1,4 +1,4 @@
-Sistema Compras Online
+Sistema Compras Online - Trabalho Faculdade.
 ==================
 
 Tecnologias e Frameworks utilizados.
@@ -42,7 +42,7 @@ $ cd sistema-compras-online/compras-frontend
 $ mvn jetty:run
 ```
 
-Acesso ao aplicação:
+Acesso a aplicação:
 ------
 [http://localhost:8080/compras-frontend/](http://localhost:8080/compras-frontend/) <br>
 
