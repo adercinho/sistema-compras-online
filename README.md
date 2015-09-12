@@ -44,7 +44,7 @@ $ mvn jetty:run
 
 Acesso a aplicação:
 ------
-[http://localhost:8080/compras-frontend/](http://localhost:8080/compras-frontend/) <br>
+[http://localhost:8080//](http://localhost:8080/) <br>
 
 
 Localizalção REST:
