@@ -14,7 +14,7 @@ Como Usar
 ```bash
 
 $ git clone git@github.com:adercinho/sistema-compras-online.git
-$ cd sistema-compras-online/compras-frontend
+$ cd sistema-compras-online/compras-backend
 $ mvn clean install
 ```
 
