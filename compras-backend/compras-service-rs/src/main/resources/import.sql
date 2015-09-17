@@ -9,11 +9,11 @@ insert into PRODUTO (descricao, estoque, preco) values ('Bicicleta monark azul',
 insert into PRODUTO (descricao, estoque, preco) values ('Geladeira 800L preta', 8, 3500)
 
 insert into RESERVA (data, atendente, situacao, valor, ID_CLIENTE) values ('2015-09-09 00:00:00', 'Gustavo Matos', 0, 250, 1)
-insert into RESERVA (data, atendente, situacao, valor, ID_CLIENTE) values ('2015-09-10 00:00:00', 'Humberto Macedo', 0, 500, 2)
-insert into RESERVA (data, atendente, situacao, valor, ID_CLIENTE) values ('2015-09-10 00:00:00', 'Fernando Hugo', 0, 501, 1)
-insert into RESERVA (data, atendente, situacao, valor, ID_CLIENTE) values ('2015-09-10 00:00:00', 'Fernando Hugo', 0, 550, 2)
+insert into RESERVA (data, atendente, situacao, valor, ID_CLIENTE) values ('2015-09-10 00:00:00', 'Humberto Macedo', 1, 500, 2)
+insert into RESERVA (data, atendente, situacao, valor, ID_CLIENTE) values ('2015-09-10 00:00:00', 'Fernando Hugo', 2, 501, 1)
+insert into RESERVA (data, atendente, situacao, valor, ID_CLIENTE) values ('2015-09-10 00:00:00', 'Fernando Hugo', 2, 550, 2)
 
 insert into COMPRA (data, responsavel, situacao, valor, ID_RESERVA) values ('2015-09-09 00:00:00', 'Jhonatas Santana', 0, 250, 1)
-insert into COMPRA (data, responsavel, situacao, valor, ID_RESERVA) values ('2015-09-10 00:00:00', 'Jhonatas Santana', 0, 500, 2)
-insert into COMPRA (data, responsavel, situacao, valor, ID_RESERVA) values ('2015-09-10 00:00:00', 'Jhonatas Santana', 0, 501, 3)
-insert into COMPRA (data, responsavel, situacao, valor, ID_RESERVA) values ('2015-09-10 00:00:00', 'Jhonatas Santana', 0, 850, 4)
+insert into COMPRA (data, responsavel, situacao, valor, ID_RESERVA) values ('2015-09-10 00:00:00', 'Jhonatas Santana', 1, 500, 2)
+insert into COMPRA (data, responsavel, situacao, valor, ID_RESERVA) values ('2015-09-10 00:00:00', 'Jhonatas Santana', 2, 501, 3)
+insert into COMPRA (data, responsavel, situacao, valor, ID_RESERVA) values ('2015-09-10 00:00:00', 'Jhonatas Santana', 2, 850, 4)

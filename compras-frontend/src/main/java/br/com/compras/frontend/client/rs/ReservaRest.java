@@ -44,6 +44,7 @@ public class ReservaRest implements ReservaService {
 		try {
 			return response.getEntity(new GenericType<List<Reserva>>(){});
 		} catch (Exception e) {
+			e.printStackTrace();
 			return new ArrayList<Reserva>();
 		}
 	}

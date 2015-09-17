@@ -2,6 +2,7 @@ package br.com.compras.frontend.main.menu;
 
 import br.com.compras.frontend.view.ClienteView;
 import br.com.compras.frontend.view.ProdutoView;
+import br.com.compras.frontend.view.ReservaView;
 
 import com.vaadin.navigator.View;
 import com.vaadin.server.FontAwesome;
@@ -9,7 +10,8 @@ import com.vaadin.server.Resource;
 
 public enum ViewType implements Comparable<ViewType> {	
     CLIENTE(ClienteView.class, "Cliente", FontAwesome.USER, false),
-    PRODUTO(ProdutoView.class, "Produto", FontAwesome.ANDROID, false);
+    PRODUTO(ProdutoView.class, "Produto", FontAwesome.ANDROID, false),
+    RESERVA(ReservaView.class, "Reserva", FontAwesome.IMAGE, false);
 
     private final String viewName;
     private final Class<? extends View> viewClass;

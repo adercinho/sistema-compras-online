@@ -10,7 +10,7 @@ import com.vaadin.ui.ComponentContainer;
 import com.vaadin.ui.UI;
 
 public class ComprasNavigator extends Navigator {
-	private static final ViewType ERROR_VIEW = ViewType.CLIENTE;
+	public static final ViewType MAIN_VIEW = ViewType.CLIENTE;
 	private ViewProvider errorViewProvider;
 	
 	public ComprasNavigator(final ComponentContainer container) {
@@ -36,7 +36,6 @@ public class ComprasNavigator extends Navigator {
 	}
 	
 	private void initViewProviders() {
-		// A dedicated view provider is added for each separate view type
 		for (final ViewType viewType : ViewType.values()) {
 			ViewProvider viewProvider = new ClassBasedViewProvider(
 					viewType.name(), viewType.getViewClass()) {
@@ -59,7 +58,7 @@ public class ComprasNavigator extends Navigator {
 				}
 			};
 
-			if (viewType == ERROR_VIEW) {
+			if (viewType == MAIN_VIEW) {
 				errorViewProvider = viewProvider;
 			}
 
@@ -67,16 +66,14 @@ public class ComprasNavigator extends Navigator {
 		}
 
 		setErrorProvider(new ViewProvider() {
-			private static final long serialVersionUID = -6844728653127486145L;
-
 			@Override
 			public String getViewName(final String viewAndParameters) {
-				return ERROR_VIEW.name();
+				return MAIN_VIEW.name();
 			}
 
 			@Override
 			public View getView(final String viewName) {
-				return errorViewProvider.getView(ERROR_VIEW.name());
+				return errorViewProvider.getView(MAIN_VIEW.name());
 			}
 		});
 	}

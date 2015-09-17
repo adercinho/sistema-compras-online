@@ -6,6 +6,10 @@
 	<description>Compras Domain</description>
 	<packaging>jar</packaging>
 
+	<properties>
+		<jackson.version>1.9.13</jackson.version>
+	</properties>
+
 	<parent>
 		<groupId>br.com.compras.backend</groupId>
 		<artifactId>compras-backend</artifactId>
@@ -18,17 +22,32 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 			<version>1.2.5.RELEASE</version>
 		</dependency>
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>1.4.188</version>
-        </dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.4.188</version>
+		</dependency>
 		<dependency>
 			<groupId>org.pojomatic</groupId>
 			<artifactId>pojomatic</artifactId>
 			<version>1.0</version>
 			<type>jar</type>
 		</dependency>
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-json</artifactId>
+			<version>1.9</version>
+		</dependency>
+		<!-- <dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>${jackson.version}</version>
+		</dependency> -->
 	</dependencies>
 
 </project>

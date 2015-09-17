@@ -3,6 +3,7 @@ package br.com.compras.frontend.main.menu;
 import java.util.Iterator;
 
 import br.com.compras.frontend.client.ClientType;
+import br.com.compras.frontend.main.ComprasNavigator;
 import br.com.compras.frontend.main.ComprasUI;
 
 import com.vaadin.data.Property;
@@ -75,6 +76,7 @@ public final class Menu extends CustomComponent {
 			@Override
 			public void valueChange(ValueChangeEvent event) {
 				ComprasUI.CLIENT_TYPE = (ClientType) event.getProperty().getValue();
+				UI.getCurrent().getNavigator().navigateTo(ComprasNavigator.MAIN_VIEW.name());
 			}
 		});
         
@@ -111,6 +113,7 @@ public final class Menu extends CustomComponent {
 	public final class ValoMenuItemButton extends Button {
 		private static final String STYLE_SELECTED = "selected";
 		public ValoMenuItemButton(final ViewType view) {
+			setId(view.name());
 			setPrimaryStyleName("valo-menu-item");
 			setIcon(view.getIcon());
 			setCaption(view.toString().substring(0, 1).toUpperCase()

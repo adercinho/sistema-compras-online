@@ -3,6 +3,7 @@ package br.com.compras.backend.entity;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,6 +37,12 @@ public class Reserva implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="ID_CLIENTE")
 	private Cliente cliente;
+	
+	public Reserva() {
+		setData(new GregorianCalendar());
+		setSituacao(Situacao.AGUARDANDO_PAGAMENTO);
+		setValor(new BigDecimal(0.0));
+	}
 
 	public Long getId() {
 		return id;
