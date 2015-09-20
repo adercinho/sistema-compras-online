@@ -46,11 +46,16 @@ public class CompraService{
 			throw new BusinessException("Reserva não encontrada!");
 		}
 		compra.setReserva(reserva);
+		reserva.getValor().add(compra.getValor());
+		reservaRepository.save(reserva);
 		return repository.save(compra);
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public void delete(@PathVariable Long id) {
-		repository.delete(repository.findOne(id));
+		Compra compra = repository.findOne(id);
+		compra.getReserva().getValor().subtract(compra.getValor());
+		reservaRepository.save(compra.getReserva());
+		repository.delete(compra);
 	}
 }
